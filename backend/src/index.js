@@ -7,9 +7,11 @@ import authRoutes from "./routes/auth.route.js";
 dotenv.config();
 const app = express();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
-app.use("/api/auth", authRoutes);
+app.use(express.json());
+
+app.use("/api/v1/auth", authRoutes);
 
 app.listen(port, async () => {
   await connectDB();
