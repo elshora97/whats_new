@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { LogOut, MessageSquare, Settings, User } from "lucide-react";
+import { useChatStore } from "../store/useChatStore";
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore();
+  const { setdefaults } = useChatStore();
 
   return (
     <header
@@ -44,7 +46,10 @@ const Navbar = () => {
 
                 <button
                   className="flex gap-2 items-center"
-                  onClick={logout}>
+                  onClick={() => {
+                    logout();
+                    setdefaults();
+                  }}>
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>
